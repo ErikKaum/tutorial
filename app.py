@@ -18,14 +18,14 @@ def init():
     return context
 
 # @app.handler runs for every call
-@app.handler()
+@app.handler("/")
 def handler(context: dict, request: Request) -> Response:
     prompt = request.json.get("prompt")
     model = context.get("model")
     outputs = model(prompt)
 
     return Response(
-        json = {"outputs": outputs[0]}, 
+        json = {"outputs": outputs}, 
         status=200
     )
 
